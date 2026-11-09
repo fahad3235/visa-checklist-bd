@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa Checklist BD</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1 id="title">Visa Checklist BD</h1>
+    <p id="subtitle" class="sub">Visa application checklist and planner for Bangladeshi travellers</p>
+  </div>
+  <button id="langBtn" class="lang" type="button">&#2476;&#2494;&#2434;&#2482;&#2494;</button>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Sections">
+  <button id="tabbtn-checklist" class="tab active" data-tab="checklist" type="button">Checklist</button>
+  <button id="tabbtn-timeline" class="tab" data-tab="timeline" type="button">Timeline</button>
+  <button id="tabbtn-costs" class="tab" data-tab="costs" type="button">Costs</button>
+  <button id="tabbtn-trips" class="tab" data-tab="trips" type="button">My Trips</button>
+  <button id="tabbtn-data" class="tab" data-tab="data" type="button">Data</button>
+</nav>
+
+<main>
+  <!-- CHECKLIST -->
+  <section id="tab-checklist" class="panel">
+    <div class="row">
+      <div class="field">
+        <label id="purposeLabel" for="purposeSel">Purpose of travel</label>
+        <select id="purposeSel"></select>
+      </div>
+      <div class="field">
+        <label id="destLabel" for="destSel">Destination</label>
+        <select id="destSel"></select>
+      </div>
+      <div class="field">
+        <label id="travelDateLabel" for="travelDate">Travel date</label>
+        <input id="travelDate" type="date">
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-head">
+        <span id="progressLabel">Progress</span>
+        <span id="progressText">0 / 0</span>
+      </div>
+      <div class="bar"><div id="progressBar" class="fill" style="width:0%"></div></div>
+    </div>
+
+    <ul id="checklist" class="checklist"></ul>
+
+    <div class="custom-box">
+      <label id="addCustomLabel" for="customInput">Add your own item</label>
+      <div class="row tight">
+        <input id="customInput" type="text" maxlength="120" placeholder="e.g. Old passport photocopy">
+        <button id="addCustomBtn" class="btn" type="button">Add</button>
+      </div>
+      <p id="customMsg" class="msg" hidden></p>
+    </div>
+
+    <div class="row between">
+      <button id="resetBtn" class="btn ghost" type="button">Reset checklist</button>
+      <p id="resetMsg" class="msg" hidden></p>
+    </div>
+
+    <p id="disclaimer" class="note">This is a general starting-point checklist. Every embassy has its own rules - always verify with the embassy, VFS or the official website before applying.</p>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="tab-timeline" class="panel" hidden>
+    <p id="noTravelDate" class="empty" hidden>Set a travel date to see your timeline.</p>
+    <p id="travelSummary" class="summary" hidden></p>
+    <ol id="timelineList" class="timeline"></ol>
+  </section>
+
+  <!-- COSTS -->
+  <section id="tab-costs" class="panel" hidden>
+    <p id="costHint" class="note">Enter amounts in BDT. All costs are per person; the total multiplies by travellers.</p>
+    <div class="cost-grid" id="costGrid"></div>
+    <div class="field narrow">
+      <label id="travellersLabel" for="travellersInput">Travellers</label>
+      <input id="travellersInput" type="number" min="1" max="10" step="1" value="1">
+    </div>
+    <div class="totals">
+      <div><span id="perPersonLabel">Per person</span><strong id="perPersonTotal">&#2547;0.00</strong></div>
+      <div><span id="totalLabel">Total</span><strong id="grandTotal">&#2547;0.00</strong></div>
+    </div>
+    <p id="costErr" class="err" hidden></p>
+  </section>
+
+  <!-- TRIPS -->
+  <section id="tab-trips" class="panel" hidden>
+    <div class="save-box">
+      <label id="saveTripLabel" for="tripName">Save this plan as a trip</label>
+      <div class="row tight">
+        <input id="tripName" type="text" maxlength="80" placeholder="e.g. Thailand family trip">
+        <button id="saveBtn" class="btn" type="button">Save trip</button>
+      </div>
+      <p id="saveMsg" class="msg" hidden></p>
+    </div>
+    <p id="noTrips" class="empty">No saved trips yet. Fill in a plan and save it here.</p>
+    <ul id="tripList" class="trips"></ul>
+  </section>
+
+  <!-- DATA -->
+  <section id="tab-data" class="panel" hidden>
+    <h2 id="exportLabel">Export your data (JSON)</h2>
+    <button id="exportBtn" class="btn" type="button">Download export</button>
+    <h2 id="importLabel">Import data</h2>
+    <div class="row tight">
+      <input id="importFile" type="file" accept="application/json,.json">
+      <button id="importBtn" class="btn" type="button">Import</button>
+    </div>
+    <p id="importMsg" class="msg" hidden></p>
+    <h2 id="eraseLabel">Erase all data</h2>
+    <p id="eraseHint" class="note">Type DELETE to erase every trip and reset the app.</p>
+    <div class="row tight">
+      <input id="eraseInput" type="text" maxlength="10" placeholder="DELETE">
+      <button id="eraseBtn" class="btn danger" type="button">Erase all</button>
+    </div>
+    <p id="eraseWrong" class="err" hidden>Type DELETE exactly to confirm.</p>
+    <p id="erasedMsg" class="msg" hidden></p>
+  </section>
+</main>
+
+<footer id="footer">Offline tool. No data leaves your device. Not affiliated with any embassy or visa centre.</footer>
+
+<script src="logic.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
